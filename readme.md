@@ -38,6 +38,6 @@
 則算在inlier，否則記為outlier
 
 ##image matching
-  
+  解矩陣Ax=b  
 ##blender
-
+  對於重複的所有像素各取一半顏色資訊
