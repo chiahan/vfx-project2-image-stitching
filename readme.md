@@ -27,7 +27,8 @@
 每個pixel的的w值(由m和gaussian weight所計算出來)進行投票找出每個特徵點的定位方向
   
   接著在每一個特徵點周圍設立一個16x16的window，將所有window轉正並針對window裡的每一個像素
-計算出gradient的
+計算出gradient的m和theta，算出來的m值乘以sigma=8的gaussian，再把window切成大小4x4的sub-window
+，對sub-window中的theta做投票，裡面分成8等分的bin，權重為m，最後可以得到128維度的feature
 ##Feature Matching
 
 RANSAC
