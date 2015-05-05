@@ -1,6 +1,12 @@
-read images
 
-inverse warping (cylindrical projection)
+
+
+
+
+
+
+## Inverse Warping (Cylindrical Projection)
+
 
 harris corner detection
 
