@@ -20,7 +20,7 @@
   此次偵測特徵點採用Harris方法，步驟如下
   
 1.將圖片資訊轉為灰階值並對其做gaussian，分別對各像素x,y方向做gradient
-<div style="display;block" style="width:50">
+<div style="display;block"><div style="width=12">
 <img src="https://cloud.githubusercontent.com/assets/11753996/7479958/ae6d9942-f397-11e4-803a-2d2b13e4d830.png">
 </div>
 2.計算每個像素x,y方向的乗積
