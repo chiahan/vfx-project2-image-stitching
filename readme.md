@@ -7,7 +7,7 @@
 
 ## Inverse Warping (Cylindrical Projection)
   讀取所有圖片檔並利用下列公式(inverse warping)將原座標各點像素資訊抓到對應到的圓柱座標上
-  
+![](https://cloud.githubusercontent.com/assets/11753996/7479938/9666b6e4-f397-11e4-8e81-eb6802f78ce5.png)  
 
 ## Harris Corner Detection
   此次偵測特徵點採用Harris方法，步驟如下
