@@ -2,13 +2,13 @@
 ## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/11spring/assignments/))
 
 ##實作內容
-1.warping
-2.feature detection
-3.feature description
-4.feature matching
-5.RANSAC
-6.image matching
-7.blending
+1. warping
+2. feature detection
+3. feature description
+4. feature matching
+5. RANSAC
+6. image matching
+7. blending
 
 
 
