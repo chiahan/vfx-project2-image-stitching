@@ -28,12 +28,16 @@
   
   接著在每一個特徵點周圍設立一個16x16的window，將所有window轉正並針對window裡的每一個像素
 計算出gradient的m和theta，算出來的m值乘以sigma=8的gaussian，再把window切成大小4x4的sub-window
-，對sub-window中的theta做投票，裡面分成8等分的bin，權重為m，最後可以得到128維度的feature
+，對sub-window中的theta做投票，裡面分成8等分的bin，權重為m，最後可以得到128維度的特徵點
+
 ##Feature Matching
+  對兩張圖每個特徵點的128維度向量矩陣做比較，找出相對應的特徵點
+  
+##RANSAC
+  隨機挑選某一對的特徵點，計算出位移量，並算出其他特徵對的位移量與此位移量差，若小於一個設定值
+則算在inlier，否則記為outlier
 
-RANSAC
-
-image matching
-
-blender
+##image matching
+  
+##blender
 
