@@ -13,13 +13,21 @@
   此次偵測特徵點採用Harris方法，步驟如下
   
 1.將圖片資訊轉為灰階值並對其做gaussian，分別對各像素x,y方向做gradient
-![](https://cloud.githubusercontent.com/assets/11753996/7479958/ae6d9942-f397-11e4-803a-2d2b13e4d830.png)
+<div style="display;block">
+<img src="https://cloud.githubusercontent.com/assets/11753996/7479958/ae6d9942-f397-11e4-803a-2d2b13e4d830.png">
+</div>
 2.計算每個像素x,y方向的乗積
-![](https://cloud.githubusercontent.com/assets/11753996/7479971/bf91ac7c-f397-11e4-8ba5-044e3a2ec64e.png)
+<div style="display;block">
+<img src="https://cloud.githubusercontent.com/assets/11753996/7479971/bf91ac7c-f397-11e4-8ba5-044e3a2ec64e.png">
+</div>
 3.分別對其做gaussian並得到M矩陣
-![](https://cloud.githubusercontent.com/assets/11753996/7479977/c94ada04-f397-11e4-9887-e8316cbedc89.png)
+<div style="display;block">
+<img src="https://cloud.githubusercontent.com/assets/11753996/7479977/c94ada04-f397-11e4-9887-e8316cbedc89.png">
+</div>
 4.下列方程式計算出R，並設定threshold來抓取特徵點
-![](https://cloud.githubusercontent.com/assets/11753996/7479983/d3771f7e-f397-11e4-8d31-c6e40ace745b.png)
+<div style="display;block">
+<img src="https://cloud.githubusercontent.com/assets/11753996/7479983/d3771f7e-f397-11e4-8d31-c6e40ace745b.png">
+</div>
 
 ##Feature Description(SIFT Descriptor)
   在特徵點設立一個window，sigma定為1，window size為2*3*(1.5*sigma)+1＝10，代入下列公式計
