@@ -80,7 +80,7 @@ inverse warping演算法
 ![](https://cloud.githubusercontent.com/assets/11717755/7515694/d03ce798-f4fb-11e4-8800-88285d61a2dd.png)
 ### 2.feature detection
 根據不同的圖片去調整參數，有些圖的feature不明顯，threshold越小，得到的feature越多。feature取太少的話圖片最後會接不起來，feature取太多會跑太慢，我們通常都取100~300個feature
-！！！放圖
+
 ### 3.feature descriptor
 feature數量可能會增加幾十個
 ### 4.feature matching
@@ -104,5 +104,5 @@ drift情況很嚴重
 -用autostitch算焦距的時候要放縮小後的照片，而不是原圖<br>
 -warping的座標，記得要以圖片中心當原點<br>
 -旋轉sift descriptor的window也要記得以window中心當原點做旋轉<br>
-失敗品
+e.g.失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
