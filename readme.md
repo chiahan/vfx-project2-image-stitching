@@ -40,15 +40,18 @@ inverse warping演算法
 </div>
 
 ###三．Feature Description(SIFT Descriptor)
-  在特徵點設立一個window，sigma定為1，window size為2*3*(1.5*sigma)+1＝10，代入下列公式計
-算出每個像素的m與theta值，將360度分成36等分的bin，並以特徵點的theta值來作為投票，並根據
-每個pixel的的w值(由m和gaussian weight所計算出來)進行投票找出每個特徵點的定位方向
+先將整張圖用gaussian filter降低對比度<br>
+用以下公式得到每個pixel的角度theta和差值m<br>
 ![](https://cloud.githubusercontent.com/assets/11753996/7479988/dfeb8d4e-f397-11e4-96ca-948f76613b13.png)
-  
-  接著在每一個特徵點周圍設立一個16x16的window，將所有window轉正並針對window裡的每一個像素
-計算出gradient的m和theta，算出來的m值乘以sigma=8的gaussian，再把window切成大小4x4的sub-window
-，對sub-window中的theta做投票，裡面分成8等分的bin，權重為m，最後可以得到128維度的特徵點
+part.1得到主要方向<br>
+以feature為中心設立一個10*10的window，將差值m和一個大小為10*10的gaussian相乘(靠近中心的pixel較重要)，然後根據角度theta將window中加權後的差值m丟入對應的bin中(360度，每10度一個bin，共36個bin)，總合最高的方向即為該feature的主要方向。若第二高票比第一高票的80%還多，則該feature有兩個方向。<br>
 
+
+part.2算出描述該FEATURE的128維向量<br>
+1.在每一個特徵點周圍設立一個16x16的window，將window依據feature的主要方向旋轉，然後在圖上sample(需透過內插算出每個element的值)<br>
+2.算出16*16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
+3.把window切成16個大小4x4的sub-window，根據sub-window中的角度theta將加權後的差值m丟入對應的bin(360度，每45度一個bin，共8個bin)。一個sub-window有8個bin的值，共16個sub-window，所以一個feature最後可得到128個值
+4.將128維的feature vector作normalize成單位向量，normalize後若向量中有>0.2的值，則將他變為0.2然後再normalize一次
 ###四．Feature Matching
   對兩張圖每個特徵點的128維度向量矩陣算歐式距離，找出距離最近的pair
   
@@ -61,7 +64,9 @@ inverse warping演算法
   利用inlier match，match中的feature對應的座標。<br>
   img1的feature座標為(x,y)，img2的feature座標為(x',y')，計算img1要位移(m1,m2)多少才能和img2接起來<br>
   透過least square解出這個位移量
-![](https://cloud.githubusercontent.com/assets/11717755/7517622/b130a116-f508-11e4-911d-69819e9d3d57.png)
+<div style="display;block">
+<img src="https://cloud.githubusercontent.com/assets/11717755/7517622/b130a116-f508-11e4-911d-69819e9d3d57.png">
+</div>
   p.s.我們的code是從右邊往左接
   
 ###七．Blending
