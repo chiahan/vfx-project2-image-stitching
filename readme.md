@@ -2,7 +2,7 @@
 ## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/))
 
 ## 程式執行方式
-使用matlabR2014a和vlfeat-0.9.20(用在統計bin中的票數）撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
+使用matlabR2014a和vlfeat-0.9.20(用在統計bin中的票數)撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
 
 ##實作內容
 1. inverse warping
@@ -93,7 +93,8 @@ drift情況很嚴重
 圖片交界處色差明顯
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_drift.png)
 ### 7.blending
-有解決drift問題，圖片不會逐漸往上或往下偏移
+解決drift問題，圖片就不會逐漸往上或往下偏移
+![](https://cloud.githubusercontent.com/assets/11717755/7521656/48a91438-f522-11e4-9705-0c0ad26c4102.png)
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
 有做blending，圖片邊界變得不明顯
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
