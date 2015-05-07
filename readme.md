@@ -63,7 +63,17 @@
 ## 結果與討論
 原圖
 ![](https://cloud.githubusercontent.com/assets/11717755/7514220/3cd46060-f4ee-11e4-98d1-4066220b3167.png)
-warp到圓柱後
+1.warp到圓柱後
 ![](https://cloud.githubusercontent.com/assets/11717755/7515694/d03ce798-f4fb-11e4-8800-88285d61a2dd.png)
-
+2.feature detection。根據不同的圖片去調整參數，有些圖的feature不明顯，threshold越小，得到的feature越多。feature取太少的話圖片最後會接不起來，feature取太多會跑太慢，我們通常都取100~300個feature
+！！！放圖
+3.feature descriptor。feature數量可能會增加幾十個
+4.feature matching
+5.RANSAC。做完RANSAC把outliers刪掉後，feature大約剩下2/3的量。
+6.image matching
+沒解決drift問題，也沒做blending
+7.blending
+有解決drift問題，圖片不會逐漸往上或往下偏移
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
+有做blending，圖片邊界變得不明顯
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama.png)
