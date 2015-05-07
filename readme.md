@@ -98,11 +98,11 @@ drift情況很嚴重
 有做blending，圖片邊界變得不明顯
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
 ### 8.容易犯的錯
--沒有用腳架
--圖片對比不明顯的話很難偵測到feature
--照片重疊的部分太少
--用autostitch算焦距的時候要放縮小後的照片，而不是原圖
--warping的座標，記得要以圖片中心當原點
--旋轉sift descriptor的window也要記得以window中心當原點做旋轉
+-沒有用腳架<br>
+-圖片對比不明顯的話很難偵測到feature<br>
+-照片重疊的部分太少<br>
+-用autostitch算焦距的時候要放縮小後的照片，而不是原圖<br>
+-warping的座標，記得要以圖片中心當原點<br>
+-旋轉sift descriptor的window也要記得以window中心當原點做旋轉<br>
 失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
