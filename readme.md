@@ -16,7 +16,7 @@
 ### ㄧ．Inverse Warping (Cylindrical Projection)
   讀取所有圖片檔並利用下列公式(inverse warping)將原座標各點像素資訊抓到對應到的圓柱座標上
 ![](https://cloud.githubusercontent.com/assets/11753996/7479938/9666b6e4-f397-11e4-8e81-eb6802f78ce5.png)  
-
+!!!放inverse warping演算法的圖
 ### 二．Feature Detection
   此次偵測特徵點採用Harris方法，步驟如下
   
@@ -48,16 +48,22 @@
 ，對sub-window中的theta做投票，裡面分成8等分的bin，權重為m，最後可以得到128維度的特徵點
 
 ###四．Feature Matching
-  對兩張圖每個特徵點的128維度向量矩陣做比較，找出相對應的特徵點
+  對兩張圖每個特徵點的128維度向量矩陣算歐式距離，找出距離最近的pair
   
 ###五．RANSAC
-  隨機挑選某一對的特徵點，計算出位移量，並算出其他特徵對的位移量與此位移量差，若小於一個設定值
-則算在inlier，否則記為outlier
+  隨機挑選某兩對match的特徵點，計算出位移量，並算出其他match的位移量與此位移量差，若小於一個threshold
+則算在inlier match，否則記為outlier，重複做k=293次，紀錄inlier match最多的那次
+！！！放ransac演算法地圖
 
 ###六．Image Matching
-  解矩陣Ax=b  
+  利用inlier match，match中的feature對應的座標。
+  img1的feature座標為(x,y)，img2的feature座標為(x',y')，計算img1要位移(m1,m2)多少才能和img2接起來
+  透過least square解出這個位移量
+  ！！！放矩陣圖
+  p.s.我們的code是從右邊往左接
+  
 ###七．Blending
-  對於重疊的像素區域各取一半顏色資訊，讓兩張圖片的接縫處不明顯，並將第一張和最後一張照片的高度差平均分配給所有相片的位移，來解決drift問題
+  對於重疊的像素區域各取一半顏色資訊(weighting function（如下圖），讓兩張圖片的接縫處不明顯，並將第一張和最後一張照片的高度差平均分配給所有相片的位移，來解決drift問題
 ![](https://cloud.githubusercontent.com/assets/11717755/7515751/4d65ec9c-f4fc-11e4-93ca-0d23908be9e3.PNG)
 
 ## 結果與討論
@@ -83,7 +89,7 @@ drift情況很嚴重
 有解決drift問題，圖片不會逐漸往上或往下偏移
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
 有做blending，圖片邊界變得不明顯
-![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama.png)
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
 ### 8.others
 失敗品
 沒有用腳架，圖片對比不明顯的話很難偵測到feature
