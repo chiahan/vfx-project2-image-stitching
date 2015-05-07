@@ -4,6 +4,10 @@
 ## 程式執行方式
 使用matlabR2014a和vlfeat-0.9.20(用在統計bin中的票數)撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
 
+## Artifact
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/artifact/tesv_panorama_crop.png)
+FROM 上古捲軸（因為螢幕是橫的所以照片是橫的）
+
 ##實作內容
 1. inverse warping
 2. feature detection (harris corner detection)
