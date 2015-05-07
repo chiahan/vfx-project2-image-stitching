@@ -1,7 +1,10 @@
 # [vfx 2015 Spring](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/ "Digital Visual Effects 2011 Spring") @ CSIE.NTU.EDU.TW
 ## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/))
 
-###實作內容
+## 程式執行方式
+使用matlab2014a撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
+
+##實作內容
 1. inverse warping
 2. feature detection (harris corner detection)
 3. feature description (sift descriptor)
@@ -56,7 +59,7 @@
 ###七．Blending
   對於重疊的像素區域各取一半顏色資訊，讓兩張圖片的接縫處不明顯，並將第一張和最後一張照片的高度差平均分配給所有相片的位移，來解決drift問題
 
-## result
+## 結果與討論
 原圖
 ![](https://cloud.githubusercontent.com/assets/11717755/7514220/3cd46060-f4ee-11e4-98d1-4066220b3167.png)
-wrap到圓柱後
+warp到圓柱後
