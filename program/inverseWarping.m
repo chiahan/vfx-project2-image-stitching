@@ -14,7 +14,7 @@ function [warped_images] = inverseWarping(images, img_count, img_h, img_w, f)
             else warped_images(y_new, x_new, :, :) = 0;
             end
         end
-        end
+    end
     %figure(1);imshow(images(:,:,:,1));
     %figure(2);imshow(warped_images(:,:,:,1));
 end

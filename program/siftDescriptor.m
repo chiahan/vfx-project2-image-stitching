@@ -1,6 +1,5 @@
 function [pos, desc] = siftDescriptor(im, featureX, featureY)
     pos = [];
-    orient = [];
     desc = [];
 
     % convert the im into luminance
@@ -55,8 +54,6 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
     hf_sz = floor(sz/2);
     g = fspecial('gaussian', [sz sz], sigma);
    
-    %featureX_ = [];
-    %featureY_ = [];
     Orientation_ = [];
     
     for k = 1:numel(featureY)
@@ -79,8 +76,7 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
         % Extract the value and index of the 1st (largest) peak. 
         first_peak_val = max(hist);
         first_peak_index = find( hist==first_peak_val );
-        %featureX_(end+1)=x;
-        %featureY_(end+1)=y;
+        
         pos = [pos;[x y]];
         Orientation_(end+1) = hist_orient(first_peak_index);
         
@@ -90,8 +86,7 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
         second_peak_val = max(hist(hist~=max(hist)));
         second_peak_index = find( hist==second_peak_val );
         if(second_peak_val > first_peak_val*0.8) 
-        %featureX_(end+1) = x;
-        %featureY_(end+1) = y;
+        
         pos = [pos;[x y]];
         Orientation_(end+1) = hist_orient(second_peak_index);
         end
@@ -103,12 +98,15 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
     % procduces 128 dimensional feature vectors.
 
     % The orientation histograms have 8 bins
-    orient_bin_spacing = pi/4;
-    orient_angles = [-pi:orient_bin_spacing:(pi-orient_bin_spacing)];
+    num_theta_bins = 8;
+    theta_step = 2*pi/num_theta_bins;
+    hist_theta_edge=[-pi:theta_step:pi]; % element# : 9
+    hist_theta=[-pi+theta_step/2:theta_step:(pi-theta_step/2)]; % element# : 8
+    
     window_sz = 16;
     hf_window_sz = 8;
 
-    % Loop over all of the keypoints.
+    % Loop over all of the keypoints and open a 16*16 window
     for k = 1:size(pos,1)
         x = pos(k,1);
         y = pos(k,2);   
@@ -147,41 +145,21 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
         w = fspecial('gaussian', [window_sz window_sz], 8);
         weighted_fwMag = w .* fwMag;
         
-        % Histogram the gradient orientation samples weighted by the gradient magnitude and
-        % a gaussian with a standard deviation of 1/2 the feature window.  To avoid boundary
-        % effects, each sample is accumulated into neighbouring bins weighted by 1-d in
-        % all dimensions, where d is the distance from the center of the bin measured in
-        % units of bin spacing.
-%         for s = 1:size(feat_rot_samples,2)
-%             x_sample = feat_rot_samples(1,s);
-%             y_sample = feat_rot_samples(2,s);
-% 
-%             Dx = 0.5*(G(2,3) - G(2,1));
-%             Dy = 0.5*(G(3,2) - G(1,2));
-%             mag_sample = sqrt( Dx^2 + Dy^2 );
-%             grad_sample = atan2( Dy, Dx );
-%             if grad_sample == pi
-%                 grad_sample = -pi;
-%             end      
-% 
-%             % Compute the weighting for the x and y dimensions.
-%             x_wght = max(1 - (abs(feat_rot_grid(1,:) - x_sample)/grid_spacing), 0);
-%             y_wght = max(1 - (abs(feat_rot_grid(2,:) - y_sample)/grid_spacing), 0); 
-%             pos_wght = reshape(repmat(x_wght.*y_wght,8,1),1,128);
-% 
-%             % Compute the weighting for the orientation, rotating the gradient to the
-%             % main orientation to of the keypoint first, and then computing the difference
-%             % in angle to the histogram bin mod pi.
-%             diff = mod( grad_sample - Orientation_(k) - orient_angles + pi, 2*pi ) - pi;
-%             orient_wght = max(1 - abs(diff)/orient_bin_spacing,0);
-%             orient_wght = repmat(orient_wght,1,16);         
-% 
-%             % Compute the gaussian weighting.
-%             g = exp(-((x_sample-x)^2+(y_sample-y)^2)/(2*feat_window^2))/(2*pi*feat_window^2);
-% 
-%             % Accumulate the histogram bins.
-%             feat_desc = feat_desc + pos_wght.*orient_wght*g*mag_sample;
-%         end
+        weighted_fwMag_cell = mat2cell(weighted_fwMag,[4,4,4,4], [4,4,4,4]);
+        weighted_fwMag_cell = reshape(weighted_fwMag_cell,1,[]);
+        theta_cell = mat2cell(theta,[4,4,4,4], [4,4,4,4]);
+        theta_cell = reshape(theta_cell,1,[]);
+        
+        % loop all the 4*4 sub-window (total = 16 sub-windows)
+        for s = 1:length(theta_cell)
+            theta_sub_w = cell2mat(theta_cell(s));
+            weighted_fwMag_sub_w = cell2mat(weighted_fwMag_cell(s));
+            % Accumulate the histogram bins
+            theta_hist = zeros(1,numel(hist_theta));
+            sub_hist = vl_whistc(reshape(theta_sub_w,1,[]),reshape(weighted_fwMag_sub_w,1,[]),hist_theta_edge);
+
+            feat_desc((8*s-7):(8*s)) = sub_hist(1:8);
+        end
 
         % Normalize the feature descriptor to a unit vector to make the descriptor invariant
         % to affine changes in illumination.
@@ -199,5 +177,4 @@ function [pos, desc] = siftDescriptor(im, featureX, featureY)
         % Store the descriptor.
         desc = [desc; feat_desc];
     end    
-    
 end
