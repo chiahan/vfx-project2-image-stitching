@@ -2,7 +2,7 @@
 ## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/))
 
 ## 程式執行方式
-使用matlab2014a撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
+使用matlabR2014a和vlfeat-0.9.20(用在統計bin中的票數）撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
 
 ##實作內容
 1. inverse warping
