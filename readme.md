@@ -1,7 +1,7 @@
 # [vfx 2015 Spring](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/ "Digital Visual Effects 2011 Spring") @ CSIE.NTU.EDU.TW
-## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/assignments/))
+## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/))
 
-##實作內容
+###實作內容
 1. inverse warping
 2. feature detection (harris corner detection)
 3. feature description (sift descriptor)
@@ -14,7 +14,7 @@
   讀取所有圖片檔並利用下列公式(inverse warping)將原座標各點像素資訊抓到對應到的圓柱座標上
 ![](https://cloud.githubusercontent.com/assets/11753996/7479938/9666b6e4-f397-11e4-8e81-eb6802f78ce5.png)  
 
-### 二．Harris Corner Detection
+### 二．Feature Detection
   此次偵測特徵點採用Harris方法，步驟如下
   
 1.將圖片資訊轉為灰階值並對其做gaussian，分別對各像素x,y方向做gradient
@@ -51,10 +51,12 @@
   隨機挑選某一對的特徵點，計算出位移量，並算出其他特徵對的位移量與此位移量差，若小於一個設定值
 則算在inlier，否則記為outlier
 
-###六．image matching
+###六．Image Matching
   解矩陣Ax=b  
-###七．blending
-  對於重複的所有像素各取一半顏色資訊
+###七．Blending
+  對於重疊的像素區域各取一半顏色資訊，讓兩張圖片的接縫處不明顯，並將第一張和最後一張照片的高度差平均分配給所有相片的位移，來解決drift問題
 
 ## result
+原圖
 ![](https://cloud.githubusercontent.com/assets/11717755/7514220/3cd46060-f4ee-11e4-98d1-4066220b3167.png)
+wrap到圓柱後
