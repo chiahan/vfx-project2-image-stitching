@@ -16,7 +16,9 @@
 ### ㄧ．Inverse Warping (Cylindrical Projection)
   讀取所有圖片檔並利用下列公式(inverse warping)將原座標各點像素資訊抓到對應到的圓柱座標上
 ![](https://cloud.githubusercontent.com/assets/11753996/7479938/9666b6e4-f397-11e4-8e81-eb6802f78ce5.png)  
-!!!放inverse warping演算法的圖
+inverse warping演算法
+![](https://cloud.githubusercontent.com/assets/11717755/7517036/432fc122-f505-11e4-9d64-657c76583af6.PNG)
+
 ### 二．Feature Detection
   此次偵測特徵點採用Harris方法，步驟如下
   
@@ -53,13 +55,13 @@
 ###五．RANSAC
   隨機挑選某兩對match的特徵點，計算出位移量，並算出其他match的位移量與此位移量差，若小於一個threshold
 則算在inlier match，否則記為outlier，重複做k=293次，紀錄inlier match最多的那次
-！！！放ransac演算法地圖
+![](https://cloud.githubusercontent.com/assets/11717755/7517086/8014b84a-f505-11e4-9b89-33ab3d601f69.PNG)
 
 ###六．Image Matching
-  利用inlier match，match中的feature對應的座標。
-  img1的feature座標為(x,y)，img2的feature座標為(x',y')，計算img1要位移(m1,m2)多少才能和img2接起來
+  利用inlier match，match中的feature對應的座標。<br>
+  img1的feature座標為(x,y)，img2的feature座標為(x',y')，計算img1要位移(m1,m2)多少才能和img2接起來<br>
   透過least square解出這個位移量
-  ！！！放矩陣圖
+![](https://cloud.githubusercontent.com/assets/11717755/7517622/b130a116-f508-11e4-911d-69819e9d3d57.png)
   p.s.我們的code是從右邊往左接
   
 ###七．Blending
