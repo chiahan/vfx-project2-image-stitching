@@ -48,10 +48,10 @@ part.1得到主要方向<br>
 
 
 part.2算出描述該FEATURE的128維向量<br>
-1.在每一個特徵點周圍設立一個16x16的window，將window依據feature的主要方向旋轉，然後在圖上sample(需透過內插算出每個element的值)<br>
-2.算出16*16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
-3.把window切成16個大小4x4的sub-window，根據sub-window中的角度theta將加權後的差值m丟入對應的bin(360度，每45度一個bin，共8個bin)。一個sub-window有8個bin的值，共16個sub-window，所以一個feature最後可得到128個值
-4.將128維的feature vector作normalize成單位向量，normalize後若向量中有>0.2的值，則將他變為0.2然後再normalize一次
+在每一個特徵點周圍設立一個16x16的window，將window依據feature的主要方向旋轉，然後在圖上sample(需透過內插算出每個element的值)<br>
+算出16*16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
+把window切成16個大小4x4的sub-window，根據sub-window中的角度theta將加權後的差值m丟入對應的bin(360度，每45度一個bin，共8個bin)。一個sub-window有8個bin的值，共16個sub-window，所以一個feature最後可得到128個值<br>
+將128維的feature vector作normalize成單位向量，normalize後若向量中有>0.2的值，則將他變為0.2然後再normalize一次
 ###四．Feature Matching
   對兩張圖每個特徵點的128維度向量矩陣算歐式距離，找出距離最近的pair
   
