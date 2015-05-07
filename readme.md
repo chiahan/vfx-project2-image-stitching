@@ -89,8 +89,8 @@ drift情況很嚴重
 有解決drift問題，圖片不會逐漸往上或往下偏移
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
 有做blending，圖片邊界變得不明顯
-![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
 ### 8.others
 失敗品
 沒有用腳架，圖片對比不明顯的話很難偵測到feature
-![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
