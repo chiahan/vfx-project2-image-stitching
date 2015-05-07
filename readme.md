@@ -97,7 +97,7 @@ drift情況很嚴重
 ![](https://cloud.githubusercontent.com/assets/11717755/7521656/48a91438-f522-11e4-9705-0c0ad26c4102.png)
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
 有做blending，圖片邊界變得不明顯
-![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
+![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama.png)
 ### 8.容易犯的錯
 -沒有用腳架<br>
 -圖片對比不明顯的話很難偵測到feature<br>
