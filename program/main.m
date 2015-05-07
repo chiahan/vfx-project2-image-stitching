@@ -2,18 +2,18 @@ function main()
 %%%%%%%%%%%%%%
 % parameters %
 %%%%%%%%%%%%%%
-    img_folder = 'grail';
-    focal_len = 628; % parrington=704.5 tree=801.5 grail=628 jerry=428 tree2=815.081
+    img_folder = 'parrington';
+    focal_len = 704.5; % parrington=704.5 tree=801.5 grail=628 jerry=428 tree2=815.081 tesv=470.543
     result_output = ['../results/' img_folder '_panorama.png'];
     % harris detector parameters
     sigma = 3;
-    w = 5; % parrington=5 grail=5 tree=3
-    threshold = 4000; % parrington=4000 grail=4000 tree=500
+    w = 5;             % parrington=5 grail=5 tree=3 tesv=4
+    threshold = 4000;  % parrington=4000 grail=4000 tree=500 tesv=1000
     k = 0.04;
     % ransac parameters
-    threshold = 10;
+    theta = 10;
     % drift erasing parameters
-    drift_tag = 0;
+    drift_tag = 1; % do drift correction or not
 %%%%%%%%%%%%%%
 % parameters %
 %%%%%%%%%%%%%%
@@ -34,9 +34,9 @@ function main()
         [feature_pos, feature_descriptor] = siftDescriptor(warped_images(:,:,:,i), featureX, featureY);
         features_pos{i} = feature_pos;
         features_desc{i} = feature_descriptor;
-%      figure(i);imshow(warped_images(:,:,:,i));
-%      hold on
-%      plot(features_pos{i}(:,1),features_pos{i}(:,2), 'r*');
+%       figure(i);imshow(warped_images(:,:,:,i));
+%       hold on
+%       plot(features_pos{i}(:,1),features_pos{i}(:,2), 'r*');
     end
      
     disp('feature matching'); 
@@ -47,7 +47,7 @@ function main()
         pos1 = features_pos{j};
         pos2 = features_pos{j+1};
         match = featureMatching(desc1, desc2, pos1, pos2);
-        matchInlier = ransac(match, pos1, pos2);
+        matchInlier = ransac(match, pos1, pos2, theta);
         
         matches{j} = match;
         % disp(matches{j});

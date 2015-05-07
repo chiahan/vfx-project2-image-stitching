@@ -3,7 +3,6 @@ function imout = blendImage(im1, im2, trans, step, drift_y)
     % assumption
     %   trans = [dX, dY]; dX < 0;
     %   im1 and im2 are 3-channel images.
-    %   images might be warpped.
     
     [row1, col1, channel] = size(im1);    
     [row2, col2, channel] = size(im2);
@@ -31,7 +30,6 @@ function imout = blendImage(im1, im2, trans, step, drift_y)
     end
 
     % merge by 'plus'
-    disp('merge');
     if step==1
     for y = 1:row1
         for x = 1:col1
@@ -50,9 +48,9 @@ function imout = blendImage(im1, im2, trans, step, drift_y)
     for y = 1:row2
         for x = 1:col2 
             if bim2(y,x,:)~=0 imout(y+floor(row2/4),x,:) = imout(y+floor(row2/4),x,:) + bim2(y,x,:); end
+            %if bim2(y,x,:)~=0 imout(y+floor(row2/4),x,:) = bim2(y,x,:); end
         end
     end
-    disp('merge_end');
     %imout(find(imout<0)) = 0;
     %imout(find(imout>255)) = 255;
 end
