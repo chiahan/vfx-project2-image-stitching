@@ -1,16 +1,14 @@
 # [vfx 2015 Spring](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/ "Digital Visual Effects 2011 Spring") @ CSIE.NTU.EDU.TW
-## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/11spring/assignments/))
+## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/assignments/))
 
 ##實作內容
-1. warping
-2. feature detection
-3. feature description
-4. feature matching
-5. RANSAC
-6. image matching
-7. blending
-
-
+1. inverse warping
+2. feature detection (harris corner detection)
+3. feature description (sift descriptor)
+4. feature matching 
+5. RANSAC 
+6. image matching 
+7. blending (by weighting function) & solve drift problem
 
 ### ㄧ．Inverse Warping (Cylindrical Projection)
   讀取所有圖片檔並利用下列公式(inverse warping)將原座標各點像素資訊抓到對應到的圓柱座標上
@@ -57,3 +55,6 @@
   解矩陣Ax=b  
 ###七．blending
   對於重複的所有像素各取一半顏色資訊
+
+## result
+![](https://cloud.githubusercontent.com/assets/11717755/7514220/3cd46060-f4ee-11e4-98d1-4066220b3167.png)
