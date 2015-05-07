@@ -79,8 +79,8 @@ inverse warping演算法
 ### 1.warp到圓柱後
 ![](https://cloud.githubusercontent.com/assets/11717755/7515694/d03ce798-f4fb-11e4-8800-88285d61a2dd.png)
 ### 2.feature detection
-根據不同的圖片去調整參數，有些圖的feature不明顯，threshold越小，得到的feature越多。feature取太少的話圖片最後會接不起來，feature取太多會跑太慢，我們通常都取100~300個feature
-
+根據不同的圖片去調整參數，有些圖的feature不明顯，threshold越小，得到的feature越多。feature取太少的話圖片最後會接不起來，feature取太多會跑太慢，我們通常一張圖至少取100個feature
+![](https://cloud.githubusercontent.com/assets/11717755/7520417/291f0680-f519-11e4-8430-9d2adb4fabd2.png)
 ### 3.feature descriptor
 feature數量可能會增加幾十個
 ### 4.feature matching
