@@ -1,5 +1,5 @@
 # [vfx 2015 Spring](http://www.csie.ntu.edu.tw/~cyy/courses/vfx/15spring/ "Digital Visual Effects 2011 Spring") @ CSIE.NTU.EDU.TW
-## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/)
+## project #2: Image stitching([original link](http://www.csie.ntu.edu.tw/%7Ecyy/courses/vfx/15spring/assignments/proj2/))
 
 ## 程式執行方式
 使用matlabR2014a和vlfeat-0.9.20(用在統計bin中的票數)撰寫，執行program資料夾中的main.m，參數都在main.m中最上方修改，input的圖片在"images/(name)"資料夾中，output會在"result/"資料夾中名為(name)_panorama.png
@@ -22,7 +22,7 @@ FROM 上古捲軸（因為螢幕是橫的所以照片是橫的）
 ![](https://cloud.githubusercontent.com/assets/11753996/7479938/9666b6e4-f397-11e4-8e81-eb6802f78ce5.png)  
 inverse warping演算法
 ![](https://cloud.githubusercontent.com/assets/11717755/7517036/432fc122-f505-11e4-9d64-657c76583af6.PNG)
-圖片的焦距用![autostitch](http://www.cs.bath.ac.uk/brown/autostitch/autostitch.html)(32bit windows version)得到
+圖片的焦距用[autostitch](http://www.cs.bath.ac.uk/brown/autostitch/autostitch.html)(32bit windows version)得到
 
 ### 二．Feature Detection
   此次偵測特徵點採用Harris方法，步驟如下
