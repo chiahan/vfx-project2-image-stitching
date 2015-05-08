@@ -6,7 +6,7 @@
 
 ## Artifact
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/artifact/tesv_panorama_crop.png)
-FROM 上古捲軸（因為螢幕是橫的所以照片是橫的）
+FROM 上古捲軸（因為螢幕是橫的所以原始的照片是拍橫的）
 
 ##實作內容
 1. inverse warping
