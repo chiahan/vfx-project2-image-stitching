@@ -112,6 +112,6 @@ drift情況很嚴重
 -旋轉sift descriptor的window也要記得以window中心當原點做旋轉<br>
 e.g.失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
-## Reference
-![](https://github.com/drakeguan/vfx11spring_project2)
-![](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)
+##Reference
+[](https://github.com/drakeguan/vfx11spring_project2)
+[](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)
