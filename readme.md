@@ -113,7 +113,7 @@ drift情況很嚴重
 e.g.失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
 ##Reference
-C. Harris and M. Stephens (1988). "A combined corner and edge detector"
-M. Brown, D. G. Lowe, "Recognising Panoramas", ICCV 2003.   
-[drakeguan@github project2 2011](https://github.com/drakeguan/vfx11spring_project2)
-[【project 2】Image Stitching 2013](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)
+C. Harris and M. Stephens (1988). "A combined corner and edge detector"<br>
+M. Brown, D. G. Lowe, "Recognising Panoramas", ICCV 2003.<br>
+[drakeguan@github project2 2011](https://github.com/drakeguan/vfx11spring_project2)<br>
+[【project 2】Image Stitching 2013](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)<br>
