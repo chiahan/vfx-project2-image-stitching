@@ -52,9 +52,9 @@ inverse warping演算法
 以feature為中心設立一個10*10的window，將差值m和一個大小為10*10的gaussian相乘(靠近中心的pixel較重要)，然後根據角度theta將window中加權後的差值m丟入對應的bin中(360度，每10度一個bin，共36個bin)，總合最高的方向即為該feature的主要方向。若第二高票比第一高票的80%還多，則該feature有兩個方向。<br>
 
 
-<b>part.2算出描述該FEATURE的128維向量<br></b>
+<b>part.2算出描述該FEATURE的128維向量</b><br>
 1. 在每一個特徵點周圍設立一個16x16的window，將window依據feature的主要方向旋轉，然後在圖上sample(需透過內插算出每個element的值)<br>
-2. 算出16*16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
+2. 算出16 * 16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
 3. 把window切成16個大小4x4的sub-window，根據sub-window中的角度theta將加權後的差值m丟入對應的bin(360度，每45度一個bin，共8個bin)。一個sub-window有8個bin的值，共16個sub-window，所以一個feature最後可得到128個值<br>
 4. 將128維的feature vector作normalize成單位向量，normalize後若向量中有>0.2的值，則將他變為0.2然後再normalize一次
 ### 四．Feature Matching
@@ -81,29 +81,29 @@ inverse warping演算法
 ## 結果與討論
 原圖
 ![](https://cloud.githubusercontent.com/assets/11717755/7514220/3cd46060-f4ee-11e4-98d1-4066220b3167.png)
-### 1.warp到圓柱後
+### 1. warp到圓柱後
 ![](https://cloud.githubusercontent.com/assets/11717755/7515694/d03ce798-f4fb-11e4-8800-88285d61a2dd.png)
-### 2.feature detection
+### 2. feature detection
 根據不同的圖片去調整參數，有些圖的feature不明顯，threshold越小，得到的feature越多。feature取太少的話圖片最後會接不起來，feature取太多會跑太慢，我們通常一張圖至少取100個feature
 ![](https://cloud.githubusercontent.com/assets/11717755/7520417/291f0680-f519-11e4-8430-9d2adb4fabd2.png)
-### 3.feature descriptor
+### 3. feature descriptor
 feature數量可能會增加幾十個
-### 4.feature matching
-### 5.RANSAC
+### 4. feature matching
+### 5. RANSAC
 做完RANSAC把outliers刪掉後，feature大約剩下2/3的量。
-### 6.image matching
+### 6. image matching
 沒解決drift問題，也沒做blending<br>
 drift情況很嚴重
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/parrington_panorama_drift.png)
 圖片交界處色差明顯
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_drift.png)
-### 7.blending
+### 7. blending
 解決drift問題，圖片就不會逐漸往上或往下偏移
 ![](https://cloud.githubusercontent.com/assets/11717755/7521656/48a91438-f522-11e4-9705-0c0ad26c4102.png)
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama_erase_drift.png)
 有做blending，圖片邊界變得不明顯
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/grail_panorama.png)
-### 8.容易犯的錯
+### 8. 容易犯的錯
 -沒有用腳架<br>
 -圖片對比不明顯的話很難偵測到feature<br>
 -照片重疊的部分太少<br>
@@ -113,7 +113,7 @@ drift情況很嚴重
 e.g.失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
 ## Reference
-C. Harris and M. Stephens (1988). "A combined corner and edge detector"<br>
-M. Brown, D. G. Lowe, "Recognising Panoramas", ICCV 2003.<br>
-[drakeguan@github project2 2011](https://github.com/drakeguan/vfx11spring_project2)<br>
-[【project 2】Image Stitching 2013](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)<br>
+1. C. Harris and M. Stephens (1988). "A combined corner and edge detector"<br>
+2. M. Brown, D. G. Lowe, "Recognising Panoramas", ICCV 2003.<br>
+3. [drakeguan@github project2 2011](https://github.com/drakeguan/vfx11spring_project2)<br>
+4. [【project 2】Image Stitching 2013](http://vfx2013chl.blogspot.tw/2013/04/project-2image-stitching.html)<br>
