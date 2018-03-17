@@ -8,7 +8,7 @@
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/artifact/tesv_panorama_crop.png)
 FROM 上古捲軸（因為螢幕是橫的所以原始的照片是拍橫的）
 
-##實作內容
+## 實作內容
 1. inverse warping
 2. feature detection (harris corner detection)
 3. feature description (sift descriptor)
@@ -44,7 +44,7 @@ inverse warping演算法
 <img src="https://cloud.githubusercontent.com/assets/11753996/7479983/d3771f7e-f397-11e4-8d31-c6e40ace745b.png">
 </div>
 
-###三．Feature Description(SIFT Descriptor)
+### 三．Feature Description(SIFT Descriptor)
 先將整張圖用gaussian filter降低對比度<br>
 用以下公式得到每個pixel的角度theta和差值m<br>
 ![](https://cloud.githubusercontent.com/assets/11753996/7479988/dfeb8d4e-f397-11e4-96ca-948f76613b13.png)
@@ -57,15 +57,15 @@ inverse warping演算法
 2. 算出16*16window中每個pixel的角度theta和差值m，並用gaussian加權(靠近中心的pixel較重要)<br>
 3. 把window切成16個大小4x4的sub-window，根據sub-window中的角度theta將加權後的差值m丟入對應的bin(360度，每45度一個bin，共8個bin)。一個sub-window有8個bin的值，共16個sub-window，所以一個feature最後可得到128個值<br>
 4. 將128維的feature vector作normalize成單位向量，normalize後若向量中有>0.2的值，則將他變為0.2然後再normalize一次
-###四．Feature Matching
+### 四．Feature Matching
   對兩張圖每個特徵點的128維度向量矩陣算歐式距離，找出距離最近的pair
   
-###五．RANSAC
+### 五．RANSAC
   隨機挑選某兩對match的特徵點，計算出位移量，並算出其他match的位移量與此位移量差，若小於一個threshold
 則算在inlier match，否則記為outlier，重複做k=293次，紀錄inlier match最多的那次
 ![](https://cloud.githubusercontent.com/assets/11717755/7517086/8014b84a-f505-11e4-9b89-33ab3d601f69.PNG)
 
-###六．Image Matching
+### 六．Image Matching
   利用inlier match，match中的feature對應的座標。<br>
   img1的feature座標為(x,y)，img2的feature座標為(x',y')，計算img1要位移(m1,m2)多少才能和img2接起來<br>
   透過least square解出這個位移量
@@ -74,7 +74,7 @@ inverse warping演算法
 </div>
   p.s.我們的code是從右邊往左接
   
-###七．Blending
+### 七．Blending
   對於重疊的像素區域各取一半顏色資訊(weighting function（如下圖），讓兩張圖片的接縫處不明顯，並將第一張和最後一張照片的高度差平均分配給所有相片的位移，來解決drift問題
 ![](https://cloud.githubusercontent.com/assets/11717755/7515751/4d65ec9c-f4fc-11e4-93ca-0d23908be9e3.PNG)
 
@@ -112,7 +112,7 @@ drift情況很嚴重
 -旋轉sift descriptor的window也要記得以window中心當原點做旋轉<br>
 e.g.失敗品
 ![](https://github.com/chiahan/vfx-project2-image-stitching/blob/master/results/tree_panorama_3_500.png)
-##Reference
+## Reference
 C. Harris and M. Stephens (1988). "A combined corner and edge detector"<br>
 M. Brown, D. G. Lowe, "Recognising Panoramas", ICCV 2003.<br>
 [drakeguan@github project2 2011](https://github.com/drakeguan/vfx11spring_project2)<br>
